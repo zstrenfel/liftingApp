@@ -14,6 +14,9 @@
 		923902C91D7B3E0700EB2442 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 923902C71D7B3E0700EB2442 /* LaunchScreen.storyboard */; };
 		923902D41D7B3E0700EB2442 /* LiftingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923902D31D7B3E0700EB2442 /* LiftingAppTests.swift */; };
 		923902DF1D7B3E0700EB2442 /* LiftingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923902DE1D7B3E0700EB2442 /* LiftingAppUITests.swift */; };
+		923902EF1D7B434F00EB2442 /* RegimensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923902EE1D7B434F00EB2442 /* RegimensViewController.swift */; };
+		923902F11D7B441900EB2442 /* RegimensTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923902F01D7B441900EB2442 /* RegimensTableViewCell.swift */; };
+		923902F31D7B526900EB2442 /* CreateRegimenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923902F21D7B526900EB2442 /* CreateRegimenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		923902DA1D7B3E0700EB2442 /* LiftingAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiftingAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		923902DE1D7B3E0700EB2442 /* LiftingAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftingAppUITests.swift; sourceTree = "<group>"; };
 		923902E01D7B3E0700EB2442 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		923902EE1D7B434F00EB2442 /* RegimensViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegimensViewController.swift; sourceTree = "<group>"; };
+		923902F01D7B441900EB2442 /* RegimensTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegimensTableViewCell.swift; sourceTree = "<group>"; };
+		923902F21D7B526900EB2442 /* CreateRegimenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRegimenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,8 @@
 		923902BD1D7B3E0700EB2442 /* LiftingApp */ = {
 			isa = PBXGroup;
 			children = (
+				923902ED1D7B431300EB2442 /* Regimens */,
+				923902EC1D7B3F6F00EB2442 /* Models */,
 				923902BE1D7B3E0700EB2442 /* AppDelegate.swift */,
 				923902C01D7B3E0700EB2442 /* ViewController.swift */,
 				923902C21D7B3E0700EB2442 /* Main.storyboard */,
@@ -123,6 +131,23 @@
 				923902E01D7B3E0700EB2442 /* Info.plist */,
 			);
 			path = LiftingAppUITests;
+			sourceTree = "<group>";
+		};
+		923902EC1D7B3F6F00EB2442 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		923902ED1D7B431300EB2442 /* Regimens */ = {
+			isa = PBXGroup;
+			children = (
+				923902EE1D7B434F00EB2442 /* RegimensViewController.swift */,
+				923902F01D7B441900EB2442 /* RegimensTableViewCell.swift */,
+				923902F21D7B526900EB2442 /* CreateRegimenViewController.swift */,
+			);
+			name = Regimens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +281,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				923902EF1D7B434F00EB2442 /* RegimensViewController.swift in Sources */,
 				923902C11D7B3E0700EB2442 /* ViewController.swift in Sources */,
+				923902F31D7B526900EB2442 /* CreateRegimenViewController.swift in Sources */,
 				923902BF1D7B3E0700EB2442 /* AppDelegate.swift in Sources */,
+				923902F11D7B441900EB2442 /* RegimensTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +512,7 @@
 				923902E51D7B3E0700EB2442 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		923902E61D7B3E0700EB2442 /* Build configuration list for PBXNativeTarget "LiftingAppTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +521,7 @@
 				923902E81D7B3E0700EB2442 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		923902E91D7B3E0700EB2442 /* Build configuration list for PBXNativeTarget "LiftingAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +530,7 @@
 				923902EB1D7B3E0700EB2442 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
