@@ -21,25 +21,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B1X-W8-3lh">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="d3t-vo-vLy">
-                                    <rect key="frame" x="0.0" y="152" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccI-kU-2qg">
-                                            <rect key="frame" x="253" y="7" width="95" height="30"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <state key="normal" title="New Regimen"/>
-                                            <connections>
-                                                <segue destination="1Il-BU-NQb" kind="show" id="5An-Ww-Bd0"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstItem="ccI-kU-2qg" firstAttribute="centerY" secondItem="d3t-vo-vLy" secondAttribute="centerY" id="Xmf-CY-2KJ"/>
-                                        <constraint firstItem="ccI-kU-2qg" firstAttribute="centerX" secondItem="d3t-vo-vLy" secondAttribute="centerX" id="wx7-yx-jdJ"/>
-                                    </constraints>
-                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RegimenTableViewCell" id="W4f-xY-7fy" customClass="RegimensTableViewCell" customModule="LiftingApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="60"/>
@@ -80,76 +61,53 @@
                             <constraint firstItem="B1X-W8-3lh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="eWf-WQ-pto"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Regimens" id="js6-Bo-8ux"/>
+                    <navigationItem key="navigationItem" title="Regimens" id="js6-Bo-8ux">
+                        <barButtonItem key="rightBarButtonItem" title="New" id="h2O-yn-Drw">
+                            <connections>
+                                <action selector="createNewRegimen:" destination="BYZ-38-t0r" id="1fT-gn-vJa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="B1X-W8-3lh" id="OWG-Td-Cqb"/>
                         <segue destination="7ea-Xl-wPh" kind="show" identifier="showRegimen" id="yhc-Gm-JYP"/>
+                        <segue destination="pqE-bM-oWU" kind="show" identifier="showAdmin" id="mQ8-2k-8hF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1088" y="392"/>
         </scene>
-        <!--Create Regimen View Controller-->
-        <scene sceneID="ZZW-xc-sgy">
+        <!--Admin View Controller-->
+        <scene sceneID="m3v-0Y-rc9">
             <objects>
-                <viewController id="1Il-BU-NQb" customClass="CreateRegimenViewController" customModule="LiftingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pqE-bM-oWU" customClass="AdminViewController" customModule="LiftingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yRZ-pU-ZFl"/>
-                        <viewControllerLayoutGuide type="bottom" id="Sw5-My-8Nw"/>
+                        <viewControllerLayoutGuide type="top" id="O4s-HI-bhe"/>
+                        <viewControllerLayoutGuide type="bottom" id="LGt-QM-XdE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="cEe-Ka-NbZ" customClass="Create">
+                    <view key="view" contentMode="scaleToFill" id="asD-2p-AnL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOZ-lO-x28">
-                                <rect key="frame" x="36" y="539" width="528" height="45"/>
-                                <color key="backgroundColor" red="0.81176470588235294" green="0.0" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="0cf-ID-tv3"/>
-                                </constraints>
-                                <state key="normal" title="Create Regimen">
-                                    <color key="titleColor" red="0.99195677042007446" green="0.99622899293899536" blue="0.99192315340042114" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9T-jG-agH">
+                                <rect key="frame" x="246" y="116" width="108" height="30"/>
+                                <state key="normal" title="Clear Regimens"/>
                                 <connections>
-                                    <action selector="createRegimen:" destination="1Il-BU-NQb" eventType="touchUpInside" id="gex-c0-CQO"/>
+                                    <action selector="clearRegimens:" destination="pqE-bM-oWU" eventType="touchUpInside" id="VR3-OD-j48"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="y6F-f9-IId">
-                                <rect key="frame" x="36" y="96" width="528" height="49"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="31" placeholderIntrinsicHeight="15" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UR-Bd-QYU">
-                                        <rect key="frame" x="0.0" y="0.0" width="528" height="15"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="31" placeholderIntrinsicHeight="30" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Regimen Name" textAlignment="natural" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="fwg-uL-rtx">
-                                        <rect key="frame" x="0.0" y="19" width="528" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="LOZ-lO-x28" secondAttribute="trailing" constant="16" id="KQB-JZ-ZFA"/>
-                            <constraint firstItem="y6F-f9-IId" firstAttribute="top" secondItem="yRZ-pU-ZFl" secondAttribute="bottom" constant="32" id="alO-IH-SIv"/>
-                            <constraint firstItem="Sw5-My-8Nw" firstAttribute="top" secondItem="LOZ-lO-x28" secondAttribute="bottom" constant="16" id="gku-qs-6Po"/>
-                            <constraint firstItem="LOZ-lO-x28" firstAttribute="leading" secondItem="cEe-Ka-NbZ" secondAttribute="leadingMargin" constant="16" id="mpQ-Dj-MS2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="y6F-f9-IId" secondAttribute="trailing" constant="16" id="nPN-Xc-ZiP"/>
-                            <constraint firstItem="y6F-f9-IId" firstAttribute="leading" secondItem="cEe-Ka-NbZ" secondAttribute="leadingMargin" constant="16" id="r7U-UZ-TQY"/>
+                            <constraint firstItem="m9T-jG-agH" firstAttribute="top" secondItem="O4s-HI-bhe" secondAttribute="bottom" constant="52" id="AYO-fC-3A8"/>
+                            <constraint firstItem="m9T-jG-agH" firstAttribute="centerX" secondItem="asD-2p-AnL" secondAttribute="centerX" id="g2A-N6-66w"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="createButton" destination="LOZ-lO-x28" id="aD9-F7-Tnr"/>
-                        <outlet property="nameField" destination="fwg-uL-rtx" id="ygf-vj-UXP"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hwt-s7-IMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nsE-wg-Zls" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1088" y="1130"/>
+            <point key="canvasLocation" x="1088" y="1090"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="h8i-2m-CFF">
@@ -199,7 +157,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" placeholderIntrinsicWidth="121" placeholderIntrinsicHeight="21" text="Last Completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ek3-2y-ffc">
                                                             <rect key="frame" x="0.0" y="0.0" width="584" height="23"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" placeholderIntrinsicWidth="121" placeholderIntrinsicHeight="17" text="Workout Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2AW-0W-r53">
@@ -250,7 +208,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Workout Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FKi-oP-hHa">
                                 <rect key="frame" x="227" y="289" width="146" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

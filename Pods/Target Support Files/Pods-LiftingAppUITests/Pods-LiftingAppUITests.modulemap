@@ -1,0 +1,6 @@
+framework module Pods_LiftingAppUITests {
+  umbrella header "Pods-LiftingAppUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

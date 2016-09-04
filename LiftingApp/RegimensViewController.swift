@@ -7,17 +7,43 @@
 //
 
 import UIKit
+import CoreData
 
-class RegimensViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RegimensViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     //MARK: Properties
     @IBOutlet weak var tableView: UITableView!
-    let regimens: Array<String> = ["StrongLifts", "Beginning Strength"]
+    let managedContext = DataController().managedObjectContext
+    var fetchedResultsController: NSFetchedResultsController!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        // Do any additional setup after loading the view.
+        
+        self.initializeFetchedResultsController()
+    }
+    
+    func initializeFetchedResultsController() {
+        let fetchRequest = NSFetchRequest(entityName: "Regimen")
+        let nameSort = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [nameSort]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
+        }
+    }
+    
+    func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+        let regimen = fetchedResultsController.objectAtIndexPath(indexPath) as! Regimen
+        let cell = cell as! RegimensTableViewCell
+        cell.regimenName.text = regimen.name
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,14 +53,55 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
     
     //MARK: Table View Delegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return regimens.count
+        let sections = fetchedResultsController.sections
+        let sectionInfo = sections![section]
+        return sectionInfo.numberOfObjects
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return fetchedResultsController.sections!.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier("RegimenTableViewCell") as! RegimensTableViewCell
-        cell.regimenName.text = regimens[indexPath.row]
-        
+        self.configureCell(cell, indexPath: indexPath)
         return cell
+    }
+    
+    //MARK: NSFetchedResultsController Delegate
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.beginUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        switch type {
+        case .Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Move:
+            break
+        case .Update:
+            break
+        }
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update:
+            configureCell(self.tableView.cellForRowAtIndexPath(indexPath!)!, indexPath: indexPath!)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        }
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -43,5 +110,44 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
     
 
     // MARK: - Navigation
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        performSegueWithIdentifier("showAdmin", sender: self)
+    }
 
+    //MARK: Actions
+    @IBAction func createNewRegimen(sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "New Regimen", message: "Create A New Regimen", preferredStyle:
+            .Alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .Default, handler: { (action: UIAlertAction) -> Void in
+            let text = alert.textFields!.first?.text
+            self.saveRegimen(text!)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction) -> Void in })
+        
+        alert.addTextFieldWithConfigurationHandler {(textField: UITextField) -> Void in }
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        alert.view.setNeedsLayout()
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    func saveRegimen(name: String) {
+        let entity = NSEntityDescription.entityForName("Regimen", inManagedObjectContext: managedContext)
+        let regimen = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        regimen.setValue(name, forKey: "name")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            log.info("Could not save \(error), \(error.userInfo)")
+        }
+        
+        
+    }
 }

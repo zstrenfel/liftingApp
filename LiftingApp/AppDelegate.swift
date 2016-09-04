@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import LogKit
+
+let log = LXLogger()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

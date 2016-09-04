@@ -6,6 +6,10 @@ target 'LiftingApp' do
   use_frameworks!
 
   # Pods for LiftingApp
+  pod 'LogKit', '~> 2.3'
+  pod 'Alamofire', '~> 3.4'
+  pod 'Dollar'
+  pod 'Cent'
 
   target 'LiftingAppTests' do
     inherit! :search_paths
