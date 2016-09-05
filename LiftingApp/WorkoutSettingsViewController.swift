@@ -1,5 +1,5 @@
 //
-//  AdminViewController.swift
+//  WorkoutSettingsViewController.swift
 //  LiftingApp
 //
 //  Created by Zach Strenfel on 9/4/16.
@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import CoreData
 
-class AdminViewController: UIViewController {
-    let managedContext = DataController().managedObjectContext
+class WorkoutSettingsViewController: UIViewController {
 
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var timerSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,19 +24,6 @@ class AdminViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func deleteAll(entity: String) {
-        let fetchRequest = NSFetchRequest(entityName: entity)
-        fetchRequest.returnsObjectsAsFaults = false
-
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try managedContext.executeRequest(deleteRequest)
-        } catch let error as NSError {
-            log.info("Delete all data in \(entity) error: \(error) \(error.userInfo)")
-        }
-        
-    }
 
     /*
     // MARK: - Navigation
@@ -46,10 +34,7 @@ class AdminViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    //MARK Actions
-    @IBAction func clearRegimens(sender: UIButton) {
-        self.deleteAll("Regimen")
-    }
 
+    @IBAction func saveClicked(sender: UIButton) {
+    }
 }

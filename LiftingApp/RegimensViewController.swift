@@ -21,8 +21,15 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        
         self.initializeFetchedResultsController()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if (fetchedResultsController != nil) {
+            fetchRegimens()
+            tableView.reloadData()
+        }
     }
     
     func initializeFetchedResultsController() {
@@ -32,18 +39,15 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
-        
+        fetchRegimens()
+    }
+    
+    func fetchRegimens() {
         do {
             try fetchedResultsController.performFetch()
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
-    }
-    
-    func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
-        let regimen = fetchedResultsController.objectAtIndexPath(indexPath) as! Regimen
-        let cell = cell as! RegimensTableViewCell
-        cell.regimenName.text = regimen.name
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,6 +70,12 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = self.tableView.dequeueReusableCellWithIdentifier("RegimenTableViewCell") as! RegimensTableViewCell
         self.configureCell(cell, indexPath: indexPath)
         return cell
+    }
+    
+    func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+        let regimen = fetchedResultsController.objectAtIndexPath(indexPath) as! Regimen
+        let cell = cell as! RegimensTableViewCell
+        cell.regimenName.text = regimen.name
     }
     
     //MARK: NSFetchedResultsController Delegate
@@ -101,6 +111,7 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        log.info("controller did change content")
         tableView.endUpdates()
     }
     
@@ -112,6 +123,19 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - Navigation
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
         performSegueWithIdentifier("showAdmin", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier! {
+        case "showRegimen":
+            log.info("showing regimen")
+            let destination = segue.destinationViewController as! WorkoutViewController
+            let indexPath = tableView.indexPathForSelectedRow
+            let selectedRegimen = fetchedResultsController.objectAtIndexPath((indexPath)!) as! Regimen
+            destination.regimen = selectedRegimen
+        default:
+            log.info("Unknown Segue Identifier")
+        }
     }
 
     //MARK: Actions
@@ -139,7 +163,6 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
     func saveRegimen(name: String) {
         let entity = NSEntityDescription.entityForName("Regimen", inManagedObjectContext: managedContext)
         let regimen = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
         regimen.setValue(name, forKey: "name")
         
         do {
