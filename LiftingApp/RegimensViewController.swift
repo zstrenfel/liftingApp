@@ -132,7 +132,7 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
             let destination = segue.destinationViewController as! WorkoutViewController
             let indexPath = tableView.indexPathForSelectedRow
             let selectedRegimen = fetchedResultsController.objectAtIndexPath((indexPath)!) as! Regimen
-            destination.regimen = selectedRegimen
+            destination.regimenId = selectedRegimen.objectID
         default:
             log.info("Unknown Segue Identifier")
         }
@@ -147,7 +147,6 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
             let text = alert.textFields!.first?.text
             self.saveRegimen(text!)
         })
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction) -> Void in })
         
         alert.addTextFieldWithConfigurationHandler {(textField: UITextField) -> Void in }

@@ -4,6 +4,16 @@
 import Foundation
 import CoreData
 
+public enum WorkoutAttributes: String {
+    case createdAt = "createdAt"
+    case name = "name"
+    case updatedAt = "updatedAt"
+}
+
+public enum WorkoutRelationships: String {
+    case regimen = "regimen"
+}
+
 public class _Workout: NSManagedObject {
 
     // MARK: - Class methods
@@ -29,7 +39,19 @@ public class _Workout: NSManagedObject {
 
     // MARK: - Properties
 
+    @NSManaged public
+    var createdAt: NSDate?
+
+    @NSManaged public
+    var name: String?
+
+    @NSManaged public
+    var updatedAt: NSDate?
+
     // MARK: - Relationships
+
+    @NSManaged public
+    var regimen: Regimen?
 
 }
 

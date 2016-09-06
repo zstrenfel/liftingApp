@@ -31,8 +31,10 @@ class DataController: NSObject {
         
         let storeURL = docURL.URLByAppendingPathComponent("LiftingAppCoreData.sqlite")
         
+        let options = [ NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
+        
         do {
-            try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+            try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: options)
         } catch {
             fatalError("Error migrating store: \(error)")
         }

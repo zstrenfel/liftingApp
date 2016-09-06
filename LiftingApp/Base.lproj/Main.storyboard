@@ -139,7 +139,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gBC-Yt-yd2" customClass="WorkoutTableViewCell" customModule="LiftingApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WorkoutTableViewCell" id="gBC-Yt-yd2" customClass="WorkoutTableViewCell" customModule="LiftingApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gBC-Yt-yd2" id="pey-jx-cSx">
@@ -177,6 +177,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="7ea-Xl-wPh" id="Ph4-ew-zfS"/>
+                                    <outlet property="delegate" destination="7ea-Xl-wPh" id="mZG-QE-KW9"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -191,11 +195,14 @@
                     <navigationItem key="navigationItem" title="Title" id="ADe-JT-W6l">
                         <barButtonItem key="rightBarButtonItem" title="New" id="e4m-k4-VzS">
                             <connections>
-                                <segue destination="aaw-Tq-nyw" kind="show" id="XPb-bM-IF3"/>
+                                <segue destination="aaw-Tq-nyw" kind="presentation" identifier="showWorkoutModal" id="XPb-bM-IF3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="IaU-bS-OJr" id="3Yi-c5-eBY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xeq-eX-qqc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -204,7 +211,7 @@
         <!--Workout Settings-->
         <scene sceneID="JaK-qm-Fax">
             <objects>
-                <viewController id="aaw-Tq-nyw" customClass="WorkoutSettingsViewController" customModule="LiftingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="aaw-Tq-nyw" customClass="WorkoutSettingsViewController" customModule="LiftingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ksb-z7-GtV"/>
                         <viewControllerLayoutGuide type="bottom" id="lHN-gc-Dwl"/>
@@ -227,7 +234,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ONU-fa-cIj">
-                                <rect key="frame" x="36" y="80" width="528" height="55"/>
+                                <rect key="frame" x="36" y="60" width="528" height="55"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="45" placeholderIntrinsicHeight="21" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEC-50-Eqr">
                                         <rect key="frame" x="0.0" y="0.0" width="528" height="21"/>
@@ -256,18 +263,29 @@
                                     </switch>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kya-xk-WFv">
+                                <rect key="frame" x="516" y="20" width="48" height="30"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.81176470590000005" green="0.0" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="closeModal:" destination="aaw-Tq-nyw" eventType="touchUpInside" id="det-tX-pez"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VH5-Ok-ezf" firstAttribute="top" secondItem="ONU-fa-cIj" secondAttribute="bottom" constant="8" id="4d6-Qw-IR8"/>
-                            <constraint firstItem="ONU-fa-cIj" firstAttribute="top" secondItem="Ksb-z7-GtV" secondAttribute="bottom" constant="16" id="99S-jR-Vlq"/>
+                            <constraint firstItem="ONU-fa-cIj" firstAttribute="top" secondItem="Ksb-z7-GtV" secondAttribute="bottom" constant="40" id="99S-jR-Vlq"/>
                             <constraint firstItem="AuC-eA-vb3" firstAttribute="top" secondItem="ONU-fa-cIj" secondAttribute="bottom" constant="16" id="MeV-Nu-dYK"/>
                             <constraint firstItem="lHN-gc-Dwl" firstAttribute="top" secondItem="VH5-Ok-ezf" secondAttribute="bottom" constant="16" id="R9e-pz-aCc"/>
+                            <constraint firstItem="kya-xk-WFv" firstAttribute="top" secondItem="Ksb-z7-GtV" secondAttribute="bottom" id="XFS-1y-q4c"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ONU-fa-cIj" secondAttribute="trailing" constant="16" id="aUM-kX-gSA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VH5-Ok-ezf" secondAttribute="trailing" constant="16" id="arn-l2-eN7"/>
                             <constraint firstItem="ONU-fa-cIj" firstAttribute="leading" secondItem="PVr-Jb-c1w" secondAttribute="leadingMargin" constant="16" id="ekP-cb-4zS"/>
                             <constraint firstItem="AuC-eA-vb3" firstAttribute="leading" secondItem="PVr-Jb-c1w" secondAttribute="leadingMargin" constant="16" id="emY-dU-9q2"/>
                             <constraint firstItem="VH5-Ok-ezf" firstAttribute="leading" secondItem="PVr-Jb-c1w" secondAttribute="leadingMargin" constant="16" id="hXy-IT-ilv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="kya-xk-WFv" secondAttribute="trailing" constant="16" id="iLs-rx-ufV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AuC-eA-vb3" secondAttribute="trailing" constant="16" id="ld9-pa-Dei"/>
                         </constraints>
                         <variation key="default">

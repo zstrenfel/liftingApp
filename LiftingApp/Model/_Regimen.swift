@@ -10,6 +10,10 @@ public enum RegimenAttributes: String {
     case updatedAt = "updatedAt"
 }
 
+public enum RegimenRelationships: String {
+    case workouts = "workouts"
+}
+
 public class _Regimen: NSManagedObject {
 
     // MARK: - Class methods
@@ -45,6 +49,37 @@ public class _Regimen: NSManagedObject {
     var updatedAt: NSDate?
 
     // MARK: - Relationships
+
+    @NSManaged public
+    var workouts: NSSet
+
+}
+
+extension _Regimen {
+
+    func addWorkouts(objects: NSSet) {
+        let mutable = self.workouts.mutableCopy() as! NSMutableSet
+        mutable.unionSet(objects as Set<NSObject>)
+        self.workouts = mutable.copy() as! NSSet
+    }
+
+    func removeWorkouts(objects: NSSet) {
+        let mutable = self.workouts.mutableCopy() as! NSMutableSet
+        mutable.minusSet(objects as Set<NSObject>)
+        self.workouts = mutable.copy() as! NSSet
+    }
+
+    func addWorkoutsObject(value: Workout) {
+        let mutable = self.workouts.mutableCopy() as! NSMutableSet
+        mutable.addObject(value)
+        self.workouts = mutable.copy() as! NSSet
+    }
+
+    func removeWorkoutsObject(value: Workout) {
+        let mutable = self.workouts.mutableCopy() as! NSMutableSet
+        mutable.removeObject(value)
+        self.workouts = mutable.copy() as! NSSet
+    }
 
 }
 
