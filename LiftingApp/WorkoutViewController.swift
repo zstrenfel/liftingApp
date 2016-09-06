@@ -51,6 +51,22 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.dateLabel.text = "\(NSDate())"
     }
     
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let editWorkoutAction = UITableViewRowAction(style: .Default, title: "Edit", handler: _workoutEdit)
+        editWorkoutAction.backgroundColor = ColorPalette.Blue
+        let deleteWorkoutAction = UITableViewRowAction(style: .Default, title: "Delete", handler: _workoutDelete)
+        deleteWorkoutAction.backgroundColor = ColorPalette.Red
+        return [editWorkoutAction, deleteWorkoutAction]
+    }
+    
+    func _workoutEdit(action: UITableViewRowAction, indexPath: NSIndexPath) {
+        log.info("editing")
+    }
+    
+    func _workoutDelete(action: UITableViewRowAction, indexPath: NSIndexPath) {
+        log.info("deleting")
+    }
+    
     //MARK: WorkoutModal Delegate
     func recieveWorkoutData(name: String, timer: Bool) {
         let entity = NSEntityDescription.entityForName("Workout", inManagedObjectContext: moc)

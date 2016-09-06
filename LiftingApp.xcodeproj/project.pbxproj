@@ -42,6 +42,7 @@
 		92B71B241D7CE5E200C17281 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B71B231D7CE5E200C17281 /* WorkoutViewController.swift */; };
 		92C0007F1D7E234900C65D1D /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0007D1D7E234900C65D1D /* Workout+CoreDataProperties.swift */; };
 		92C000801D7E234900C65D1D /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0007E1D7E234900C65D1D /* Workout.swift */; };
+		92C000851D7E7BE400C65D1D /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C000841D7E7BE400C65D1D /* ColorPalette.swift */; };
 		92DDDBB91D7C78E000AADB52 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDBB81D7C78E000AADB52 /* AdminViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		92C0007D1D7E234900C65D1D /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		92C0007E1D7E234900C65D1D /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		92C000821D7E249100C65D1D /* LiftingAppCoreData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "LiftingAppCoreData 2.xcdatamodel"; sourceTree = "<group>"; };
+		92C000841D7E7BE400C65D1D /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		92DDDBB81D7C78E000AADB52 /* AdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		9E6B7FE304F930843E23BFFE /* Pods-LiftingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiftingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiftingApp/Pods-LiftingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AAD8780939ABCB1670465932 /* Pods-LiftingAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiftingAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiftingAppUITests/Pods-LiftingAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		923902B21D7B3E0700EB2442 = {
 			isa = PBXGroup;
 			children = (
+				92C000831D7E7BC200C65D1D /* utils */,
 				92C000811D7E236500C65D1D /* Models */,
 				923902BD1D7B3E0700EB2442 /* LiftingApp */,
 				923902D21D7B3E0700EB2442 /* LiftingAppTests */,
@@ -239,6 +242,14 @@
 				926AC6661D7B937000CDE5F8 /* Regimen.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		92C000831D7E7BC200C65D1D /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				92C000841D7E7BE400C65D1D /* ColorPalette.swift */,
+			);
+			name = utils;
 			sourceTree = "<group>";
 		};
 		92DDDBB71D7C78B200AADB52 /* Admin */ = {
@@ -536,6 +547,7 @@
 				92A063A01D7D019E000F58B3 /* WorkoutSettingsViewController.swift in Sources */,
 				92A063A41D7D0276000F58B3 /* WorkoutTableViewCell.swift in Sources */,
 				92B71B241D7CE5E200C17281 /* WorkoutViewController.swift in Sources */,
+				92C000851D7E7BE400C65D1D /* ColorPalette.swift in Sources */,
 				92C0007F1D7E234900C65D1D /* Workout+CoreDataProperties.swift in Sources */,
 				923902C11D7B3E0700EB2442 /* ViewController.swift in Sources */,
 				92DDDBB91D7C78E000AADB52 /* AdminViewController.swift in Sources */,
