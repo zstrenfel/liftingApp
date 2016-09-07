@@ -51,6 +51,7 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.dateLabel.text = "\(NSDate())"
     }
     
+    
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let editWorkoutAction = UITableViewRowAction(style: .Default, title: "Edit", handler: _workoutEdit)
         editWorkoutAction.backgroundColor = ColorPalette.Blue
@@ -77,7 +78,9 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         do {
             try moc.save()
-            tableView.reloadData()
+            let range = NSMakeRange(0, 1)
+            
+            tableView.reloadSections()
             log.info("saved new workout")
         } catch let error as NSError {
             log.info("Could not save \(error), \(error.userInfo)")
