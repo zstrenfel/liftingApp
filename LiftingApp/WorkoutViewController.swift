@@ -78,9 +78,6 @@ class WorkoutViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         do {
             try moc.save()
-            let range = NSMakeRange(0, 1)
-            
-            tableView.reloadSections()
             log.info("saved new workout")
         } catch let error as NSError {
             log.info("Could not save \(error), \(error.userInfo)")
