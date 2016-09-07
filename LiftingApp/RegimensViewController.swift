@@ -13,7 +13,7 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
     
     //MARK: Properties
     @IBOutlet weak var tableView: UITableView!
-    let managedContext = DataController().managedObjectContext
+    let moc = DataController().managedObjectContext
     var fetchedResultsController: NSFetchedResultsController!
     
     
@@ -37,7 +37,7 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
         let nameSort = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [nameSort]
         
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
         fetchRegimens()
     }
@@ -160,12 +160,12 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func saveRegimen(name: String) {
-        let entity = NSEntityDescription.entityForName("Regimen", inManagedObjectContext: managedContext)
-        let regimen = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        let entity = NSEntityDescription.entityForName("Regimen", inManagedObjectContext: moc)
+        let regimen = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: moc)
         regimen.setValue(name, forKey: "name")
         
         do {
-            try managedContext.save()
+            try moc.save()
         } catch let error as NSError {
             log.info("Could not save \(error), \(error.userInfo)")
         }
