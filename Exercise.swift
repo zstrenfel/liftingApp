@@ -1,16 +1,16 @@
 //
-//  Workout.swift
+//  Exercise.swift
 //  LiftingApp
 //
-//  Created by Zach Strenfel on 9/5/16.
+//  Created by Zach Strenfel on 9/11/16.
 //  Copyright © 2016 Z&D. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-@objc(Workout)
-class Workout: NSManagedObject {
+@objc(Exercise)
+class Exercise: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
     override func awakeFromInsert() {
@@ -19,12 +19,13 @@ class Workout: NSManagedObject {
     }
 }
 
-extension Workout {
+extension Exercise {
     
+    @NSManaged var repetitions: NSNumber?
+    @NSManaged var weight: NSNumber?
+    @NSManaged var created_at: NSDate?
+    @NSManaged var updated_at: NSDate?
     @NSManaged var name: String?
-    @NSManaged var createdAt: NSDate?
-    @NSManaged var updatedAt: NSDate?
-    @NSManaged var regimen: Regimen?
+    @NSManaged var workout: Workout?
     
 }
-

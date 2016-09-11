@@ -71,7 +71,7 @@
                     <connections>
                         <outlet property="tableView" destination="B1X-W8-3lh" id="OWG-Td-Cqb"/>
                         <segue destination="pqE-bM-oWU" kind="show" identifier="showAdmin" id="mQ8-2k-8hF"/>
-                        <segue destination="7ea-Xl-wPh" kind="show" identifier="showRegimen" id="Ne7-Fr-VbN"/>
+                        <segue destination="7ea-Xl-wPh" kind="show" identifier="showRegimen" id="2Vu-go-rdB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -121,7 +121,7 @@
         <!--Workout-->
         <scene sceneID="h8i-2m-CFF">
             <objects>
-                <viewController id="7ea-Xl-wPh" customClass="WorkoutsViewController" sceneMemberID="viewController">
+                <viewController id="7ea-Xl-wPh" customClass="WorkoutsViewController" customModule="LiftingApp" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="89Z-lf-nh1"/>
                         <viewControllerLayoutGuide type="bottom" id="bHV-UA-yQ1"/>
@@ -217,7 +217,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Ef-2H-qOT">
-                                <rect key="frame" x="0.0" y="64" width="600" height="446"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="438"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="O5K-7H-eyW">
@@ -280,7 +280,7 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="62d-Yy-e3U">
-                                <rect key="frame" x="0.0" y="510" width="600" height="46"/>
+                                <rect key="frame" x="0.0" y="502" width="600" height="46"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="y2c-T9-2ZF">
                                         <rect key="frame" x="8" y="8" width="584" height="30"/>
@@ -313,7 +313,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6JL-bN-6OT" firstAttribute="top" secondItem="62d-Yy-e3U" secondAttribute="bottom" id="1HP-UY-fNz"/>
+                            <constraint firstItem="6JL-bN-6OT" firstAttribute="top" secondItem="62d-Yy-e3U" secondAttribute="bottom" constant="8" id="1HP-UY-fNz"/>
                             <constraint firstItem="62d-Yy-e3U" firstAttribute="top" secondItem="6Ef-2H-qOT" secondAttribute="bottom" id="3DP-kg-Ghd"/>
                             <constraint firstItem="6JL-bN-6OT" firstAttribute="top" secondItem="6Ef-2H-qOT" secondAttribute="bottom" id="7hc-yf-HYV"/>
                             <constraint firstItem="6Ef-2H-qOT" firstAttribute="top" secondItem="22t-RY-k84" secondAttribute="bottom" id="APn-48-baF"/>

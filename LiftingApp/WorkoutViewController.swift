@@ -12,11 +12,25 @@ class WorkoutViewController: UIViewController {
 
     @IBOutlet weak var addExerciseButton: UIButton!
     @IBOutlet weak var addSetButton: UIButton!
+    
+    var workout: Workout? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addExerciseButton.backgroundColor = ColorPalette.Red
-        self.addSetButton.backgroundColor = ColorPalette.Blue
         // Do any additional setup after loading the view.
+        guard workout != nil else {
+            log.info("no workout")
+            return
+        }
+        
+        self.title = workout?.name
+    }
+    
+    func renderButtons() {
+        self.addExerciseButton.backgroundColor = ColorPalette.Red
+        self.addExerciseButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        self.addSetButton.backgroundColor = ColorPalette.Blue
+        self.addSetButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
     }
 
     override func didReceiveMemoryWarning() {

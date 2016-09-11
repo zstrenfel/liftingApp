@@ -164,6 +164,11 @@ class WorkoutsViewController: UIViewController, UITableViewDelegate, UITableView
         case "showWorkoutModal":
             let destination = segue.destinationViewController as! WorkoutSettingsViewController
             destination.delegate = self
+        case "showWorkout":
+            let destination = segue.destinationViewController as! WorkoutViewController
+            let indexPath = tableView.indexPathForSelectedRow
+            let selectedWorkout = fetchedResultsController.objectAtIndexPath((indexPath)!) as! Workout
+            destination.workout = selectedWorkout
         default:
             log.info("unknown segue \(segue.identifier)")
         }
