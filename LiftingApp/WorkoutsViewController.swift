@@ -1,61 +1,59 @@
 //
-//  RegimensViewController.swift
+//  WorkoutViewController.swift
 //  LiftingApp
 //
-//  Created by Zach Strenfel on 9/3/16.
+//  Created by Zach Strenfel on 9/4/16.
 //  Copyright © 2016 Z&D. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class RegimensViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class WorkoutsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WorkoutModalDelegate, NSFetchedResultsControllerDelegate {
     
     //MARK: Properties
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    weak var regimenId: NSManagedObjectID?
+    var regimen: Regimen?
     let moc = DataController().managedObjectContext
     var fetchedResultsController: NSFetchedResultsController!
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        self.initializeFetchedResultsController()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if (fetchedResultsController != nil) {
-            fetchRegimens()
-            tableView.reloadData()
+
+        guard regimenId != nil else {
+            log.info("No Regimin ID has been passed from the previous context")
+            return
         }
+        regimen = moc.objectWithID(regimenId!) as? Regimen
+        title = regimen!.name
+        initializeFetchedResultsController()
+        fetchWorkouts()
     }
     
     func initializeFetchedResultsController() {
-        let fetchRequest = NSFetchRequest(entityName: "Regimen")
+        let fetchRequest = NSFetchRequest(entityName: "Workout")
         let nameSort = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [nameSort]
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
-        fetchRegimens()
+        
+        fetchWorkouts()
     }
     
-    func fetchRegimens() {
+    func fetchWorkouts() {
         do {
             try fetchedResultsController.performFetch()
         } catch {
             fatalError("Failed to initialize FetchedResultsController: \(error)")
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    //MARK: Table View Delegate
+    //MARK: UITableView Delegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sections = fetchedResultsController.sections
         let sectionInfo = sections![section]
@@ -67,15 +65,43 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("RegimenTableViewCell") as! RegimensTableViewCell
-        self.configureCell(cell, indexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("WorkoutTableViewCell") as! WorkoutTableViewCell
+        configureCell(cell, indexPath: indexPath)
         return cell
     }
     
     func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
-        let regimen = fetchedResultsController.objectAtIndexPath(indexPath) as! Regimen
-        let cell = cell as! RegimensTableViewCell
-        cell.regimenName.text = regimen.name
+        let workout = fetchedResultsController.objectAtIndexPath(indexPath) as! Workout
+        let cell = cell as! WorkoutTableViewCell
+        cell.nameLabel.text = workout.name
+        cell.dateLabel.text = NSDate().calendarFormat()
+    }
+    
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let editWorkoutAction = UITableViewRowAction(style: .Default, title: "Edit", handler: _workoutEdit)
+        editWorkoutAction.backgroundColor = ColorPalette.Blue
+        let deleteWorkoutAction = UITableViewRowAction(style: .Default, title: "Delete", handler: _workoutDelete)
+        deleteWorkoutAction.backgroundColor = ColorPalette.Red
+        return [editWorkoutAction, deleteWorkoutAction]
+    }
+    
+    func _workoutEdit(action: UITableViewRowAction, indexPath: NSIndexPath) {
+        log.info("editing")
+    }
+    
+    func _workoutDelete(action: UITableViewRowAction, indexPath: NSIndexPath) {
+        let workout = fetchedResultsController.objectAtIndexPath(indexPath) as! Workout
+        moc.deleteObject(workout)
+        do {
+            try moc.save()
+        } catch let error as NSError {
+            log.info("Could not delete \(error), \(error.userInfo)")
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("showWorkout", sender: self)
     }
     
     //MARK: NSFetchedResultsController Delegate
@@ -115,61 +141,32 @@ class RegimensViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.endUpdates()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("showRegimen", sender: self)
-    }
-    
-
-    // MARK: - Navigation
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        performSegueWithIdentifier("showAdmin", sender: self)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        switch segue.identifier! {
-        case "showRegimen":
-            log.info("showing regimen")
-            let destination = segue.destinationViewController as! WorkoutsViewController
-            let indexPath = tableView.indexPathForSelectedRow
-            let selectedRegimen = fetchedResultsController.objectAtIndexPath((indexPath)!) as! Regimen
-            destination.regimenId = selectedRegimen.objectID
-        default:
-            log.info("Unknown Segue Identifier")
-        }
-    }
-
-    //MARK: Actions
-    @IBAction func createNewRegimen(sender: UIBarButtonItem) {
-        let alert = UIAlertController(title: "New Regimen", message: "Create A New Regimen", preferredStyle:
-            .Alert)
+    //MARK: WorkoutModal Delegate
+    func recieveWorkoutData(name: String, timer: Bool) {
+        let entity = NSEntityDescription.entityForName("Workout", inManagedObjectContext: moc)
+        let workout = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: moc) as! Workout
         
-        let saveAction = UIAlertAction(title: "Save", style: .Default, handler: { (action: UIAlertAction) -> Void in
-            let text = alert.textFields!.first?.text
-            self.saveRegimen(text!)
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction) -> Void in })
-        
-        alert.addTextFieldWithConfigurationHandler {(textField: UITextField) -> Void in }
-        
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
-        
-        alert.view.setNeedsLayout()
-        presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    
-    func saveRegimen(name: String) {
-        let entity = NSEntityDescription.entityForName("Regimen", inManagedObjectContext: moc)
-        let regimen = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: moc)
-        regimen.setValue(name, forKey: "name")
+        workout.name = name
+        workout.regimen = regimen
         
         do {
             try moc.save()
         } catch let error as NSError {
             log.info("Could not save \(error), \(error.userInfo)")
         }
-        
-        
     }
+    
+
+    // MARK: - Navigation
+     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier! {
+        case "showWorkoutModal":
+            let destination = segue.destinationViewController as! WorkoutSettingsViewController
+            destination.delegate = self
+        default:
+            log.info("unknown segue \(segue.identifier)")
+        }
+    }
+
 }

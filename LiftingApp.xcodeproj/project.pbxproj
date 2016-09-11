@@ -39,11 +39,13 @@
 		926AC6681D7B937000CDE5F8 /* Regimen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926AC6661D7B937000CDE5F8 /* Regimen.swift */; };
 		92A063A01D7D019E000F58B3 /* WorkoutSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A0639F1D7D019E000F58B3 /* WorkoutSettingsViewController.swift */; };
 		92A063A41D7D0276000F58B3 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A063A31D7D0276000F58B3 /* WorkoutTableViewCell.swift */; };
-		92B71B241D7CE5E200C17281 /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B71B231D7CE5E200C17281 /* WorkoutViewController.swift */; };
+		92B71B241D7CE5E200C17281 /* WorkoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B71B231D7CE5E200C17281 /* WorkoutsViewController.swift */; };
 		92C0007F1D7E234900C65D1D /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0007D1D7E234900C65D1D /* Workout+CoreDataProperties.swift */; };
 		92C000801D7E234900C65D1D /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C0007E1D7E234900C65D1D /* Workout.swift */; };
 		92C000851D7E7BE400C65D1D /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C000841D7E7BE400C65D1D /* ColorPalette.swift */; };
 		92DDDBB91D7C78E000AADB52 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDBB81D7C78E000AADB52 /* AdminViewController.swift */; };
+		92EA1FCB1D85B0BC004C428A /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EA1FCA1D85B0BC004C428A /* NSDate+Extensions.swift */; };
+		92EA1FCD1D85B207004C428A /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EA1FCC1D85B207004C428A /* WorkoutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,12 +91,14 @@
 		926AC6661D7B937000CDE5F8 /* Regimen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regimen.swift; sourceTree = "<group>"; };
 		92A0639F1D7D019E000F58B3 /* WorkoutSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutSettingsViewController.swift; sourceTree = "<group>"; };
 		92A063A31D7D0276000F58B3 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
-		92B71B231D7CE5E200C17281 /* WorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
+		92B71B231D7CE5E200C17281 /* WorkoutsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutsViewController.swift; sourceTree = "<group>"; };
 		92C0007D1D7E234900C65D1D /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		92C0007E1D7E234900C65D1D /* Workout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		92C000821D7E249100C65D1D /* LiftingAppCoreData 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "LiftingAppCoreData 2.xcdatamodel"; sourceTree = "<group>"; };
 		92C000841D7E7BE400C65D1D /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		92DDDBB81D7C78E000AADB52 /* AdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
+		92EA1FCA1D85B0BC004C428A /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
+		92EA1FCC1D85B207004C428A /* WorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		9E6B7FE304F930843E23BFFE /* Pods-LiftingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiftingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiftingApp/Pods-LiftingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AAD8780939ABCB1670465932 /* Pods-LiftingAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiftingAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiftingAppUITests/Pods-LiftingAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AD200C2439E605B0BE4164F8 /* Pods-LiftingAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiftingAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiftingAppTests/Pods-LiftingAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 		923902BD1D7B3E0700EB2442 /* LiftingApp */ = {
 			isa = PBXGroup;
 			children = (
+				92EA1FC91D85B0A7004C428A /* utils */,
 				92B71B221D7CE5D000C17281 /* Workout */,
 				92DDDBB71D7C78B200AADB52 /* Admin */,
 				923902ED1D7B431300EB2442 /* Regimen */,
@@ -227,9 +232,10 @@
 		92B71B221D7CE5D000C17281 /* Workout */ = {
 			isa = PBXGroup;
 			children = (
-				92B71B231D7CE5E200C17281 /* WorkoutViewController.swift */,
+				92B71B231D7CE5E200C17281 /* WorkoutsViewController.swift */,
 				92A0639F1D7D019E000F58B3 /* WorkoutSettingsViewController.swift */,
 				92A063A31D7D0276000F58B3 /* WorkoutTableViewCell.swift */,
+				92EA1FCC1D85B207004C428A /* WorkoutViewController.swift */,
 			);
 			name = Workout;
 			sourceTree = "<group>";
@@ -259,6 +265,14 @@
 			);
 			name = Admin;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		92EA1FC91D85B0A7004C428A /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				92EA1FCA1D85B0BC004C428A /* NSDate+Extensions.swift */,
+			);
+			name = utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -540,13 +554,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92EA1FCD1D85B207004C428A /* WorkoutViewController.swift in Sources */,
+				92EA1FCB1D85B0BC004C428A /* NSDate+Extensions.swift in Sources */,
 				926AC6581D7B68A800CDE5F8 /* LiftingAppCoreData.xcdatamodeld in Sources */,
 				926AC6551D7B682A00CDE5F8 /* DataController.swift in Sources */,
 				923902EF1D7B434F00EB2442 /* RegimensViewController.swift in Sources */,
 				92C000801D7E234900C65D1D /* Workout.swift in Sources */,
 				92A063A01D7D019E000F58B3 /* WorkoutSettingsViewController.swift in Sources */,
 				92A063A41D7D0276000F58B3 /* WorkoutTableViewCell.swift in Sources */,
-				92B71B241D7CE5E200C17281 /* WorkoutViewController.swift in Sources */,
+				92B71B241D7CE5E200C17281 /* WorkoutsViewController.swift in Sources */,
 				92C000851D7E7BE400C65D1D /* ColorPalette.swift in Sources */,
 				92C0007F1D7E234900C65D1D /* Workout+CoreDataProperties.swift in Sources */,
 				923902C11D7B3E0700EB2442 /* ViewController.swift in Sources */,
